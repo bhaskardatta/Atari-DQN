@@ -1,0 +1,96 @@
+# Default configuration for adaptive RL training
+
+# Training parameters
+training:
+  total_episodes: 2000
+  max_steps_per_episode: 10000
+  save_frequency: 100
+  eval_frequency: 50
+  eval_episodes: 10
+  
+# DQN Agent parameters
+agent:
+  learning_rate: 0.0001
+  gamma: 0.99
+  epsilon_start: 1.0
+  epsilon_end: 0.01
+  epsilon_decay: 0.995
+  target_update_frequency: 1000
+  double_dqn: true
+  dueling_dqn: false
+  noisy_networks: false
+  
+# Network architecture
+network:
+  hidden_dims: [512, 512]
+  activation: 'relu'
+  dropout: 0.0
+  
+# Experience replay
+replay_buffer:
+  type: 'standard'  # 'standard', 'prioritized', 'adaptive'
+  capacity: 100000
+  batch_size: 32
+  alpha: 0.6  # for prioritized replay
+  beta_start: 0.4  # for prioritized replay
+  beta_frames: 100000  # for prioritized replay
+
+# Environment settings
+environment:
+  env_name: 'BreakoutNoFrameskip-v4'
+  frame_stack: 4
+  frame_skip: 4
+  frame_size: [84, 84]
+  grayscale: true
+  
+# Dynamic difficulty
+difficulty:
+  enable_dynamic: true
+  change_frequency: 500  # frames
+  paddle_speed_range: [0.5, 1.5]
+  ball_speed_range: [1.0, 2.0]
+  paddle_size_range: [0.7, 1.3]
+  brick_regeneration: true
+  
+# Curriculum learning
+curriculum:
+  enable: true
+  stages:
+    - name: 'normal'
+      episodes: 300
+      difficulty_multiplier: 1.0
+    - name: 'moderate'
+      episodes: 500
+      difficulty_multiplier: 1.2
+    - name: 'hard'
+      episodes: 700
+      difficulty_multiplier: 1.5
+    - name: 'extreme'
+      episodes: 500
+      difficulty_multiplier: 2.0
+  advancement_threshold: 0.8  # performance threshold to advance
+  
+# Adaptation detection
+adaptation:
+  enable: true
+  window_size: 100
+  performance_threshold: 0.2
+  variance_threshold: 1.5
+  kl_threshold: 0.1
+  
+# Logging and analysis
+logging:
+  level: 'INFO'
+  save_logs: true
+  tensorboard: true
+  save_models: true
+  save_videos: false
+  video_frequency: 100
+
+# Output paths
+paths:
+  base_dir: './results'
+  models_dir: 'models'
+  logs_dir: 'logs'
+  videos_dir: 'videos'
+  plots_dir: 'plots'
