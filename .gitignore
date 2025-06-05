@@ -23,50 +23,11 @@ share/python-wheels/
 *.egg
 MANIFEST
 
-# PyInstaller
-*.manifest
-*.spec
-
-# Installer logs
-pip-log.txt
-pip-delete-this-directory.txt
-
-# Unit test / coverage reports
-htmlcov/
-.tox/
-.nox/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
-*.py,cover
-.hypothesis/
-.pytest_cache/
-
-# Translations
-*.mo
-*.pot
-
-# Django stuff:
-*.log
-local_settings.py
-db.sqlite3
-db.sqlite3-journal
-
-# Flask stuff:
-instance/
-.webassets-cache
-
-# Scrapy stuff:
-.scrapy
-
-# Sphinx documentation
-docs/_build/
-
-# PyBuilder
-target/
+# PyTorch - exclude all .pth files except in checkpoints directory
+*.pth
+*.pt
+*.pkl
+!checkpoints/*.pth
 
 # Jupyter Notebook
 .ipynb_checkpoints
@@ -84,7 +45,7 @@ Pipfile.lock
 # PEP 582
 __pypackages__/
 
-# Celery stuff
+# Celery
 celerybeat-schedule
 celerybeat.pid
 
@@ -119,42 +80,33 @@ dmypy.json
 .pyre/
 
 # Project specific
-models/
 logs/
 results/
-outputs/
-runs/
-wandb/
-*.pkl
-*.pth
-*.pt
-*.h5
-*.hdf5
+test_results/
+*.log
+*.mp4
+*.avi
+*.gif
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
 
 # IDE
 .vscode/
 .idea/
 *.swp
 *.swo
-*~
-
-# OS
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
 
 # Temporary files
+tmp/
+temp/
 *.tmp
 *.temp
-*.bak
-*.backup
+*~
 
-# Video files (from game recordings)
-*.mp4
-*.avi
-*.mov
-*.gif
+# Model checkpoints (keep only final models)
+*_ep*.pth
+checkpoint_*.pth
+temp_*.pth

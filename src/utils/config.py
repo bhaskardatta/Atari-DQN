@@ -195,14 +195,6 @@ class Config:
         with open(config_path, 'r') as f:
             config_dict = yaml.safe_load(f)
         
-        # Handle field name mapping for replay buffer
-        replay_buffer_config = config_dict.get('replay_buffer', {}).copy()
-        if 'beta_start' in replay_buffer_config:
-            replay_buffer_config['beta'] = replay_buffer_config.pop('beta_start')
-        # Remove unsupported fields
-        replay_buffer_config = {k: v for k, v in replay_buffer_config.items() 
-                               if k in ['type', 'capacity', 'batch_size', 'alpha', 'beta', 'beta_increment']}
-        
         return cls(
             network=NetworkConfig(**config_dict.get('network', {})),
             training=TrainingConfig(**config_dict.get('training', {})),
@@ -210,7 +202,7 @@ class Config:
             difficulty=DifficultyConfig(**config_dict.get('difficulty', {})),
             curriculum=CurriculumConfig(**config_dict.get('curriculum', {})),
             agent=AgentConfig(**config_dict.get('agent', {})),
-            replay_buffer=ReplayBufferConfig(**replay_buffer_config),
+            replay_buffer=ReplayBufferConfig(**config_dict.get('replay_buffer', {})),
             adaptation=AdaptationConfig(**config_dict.get('adaptation', {})),
             logging=LoggingConfig(**config_dict.get('logging', {})),
             paths=PathsConfig(**config_dict.get('paths', {}))
