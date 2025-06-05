@@ -211,18 +211,6 @@ The model shows steady improvement over training episodes:
 - **Episodes 10000-15000**: Strategic play development (avg score: 1.5-2.0)
 - **Episodes 15000+**: Score optimization (avg score: 1.8+)
 
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
 ## 🙏 Acknowledgments
 
 - OpenAI Gym/Gymnasium for the Atari environment
@@ -237,5 +225,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 Project Link: [https://github.com/bhaskardatta/Atari-DQN](https://github.com/bhaskardatta/Atari-DQN)
 
 ---
-
-⭐ **Star this repository if you found it helpful!** ⭐
